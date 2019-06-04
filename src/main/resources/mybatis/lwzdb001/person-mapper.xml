@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 指定工作空间，要与接口名相同 -->
+<mapper namespace="com.example.druidemo.dao.lwzdb001.PersonMapper">
+
+    <!-- find user -->
+    <select id="getAll" resultType="com.example.druidemo.bean.PO.PersonPO">
+        SELECT id,name,age FROM person
+    </select>
+
+    <select id="getAllByCond" resultType="com.example.druidemo.bean.PO.PersonPO">
+        SELECT id,name,age FROM person
+        <where>
+            <if test="name != null and name != ''">
+                and name like CONCAT('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
